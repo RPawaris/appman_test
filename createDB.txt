@@ -1,0 +1,21 @@
+CREATE DATABASE `university_student_db` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE TABLE `students` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `universities` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `university_students` (
+  `university_id` int NOT NULL,
+  `student_id` int NOT NULL,
+  PRIMARY KEY (`university_id`,`student_id`),
+  KEY `student_id` (`student_id`),
+  CONSTRAINT `university_students_ibfk_1` FOREIGN KEY (`university_id`) REFERENCES `universities` (`id`),
+  CONSTRAINT `university_students_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
